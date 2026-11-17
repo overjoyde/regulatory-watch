@@ -1,0 +1,452 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Regulatory Watch canonical report v1.0",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "enum": [
+        "1.0"
+      ]
+    },
+    "profile_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+    },
+    "report_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "timezone": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+    },
+    "language": {
+      "type": "string",
+      "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$"
+    },
+    "labels": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+      }
+    },
+    "jurisdictions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "domains": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "period": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "end": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "additionalProperties": false
+    },
+    "previous_report": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "coverage": {
+      "enum": [
+        "complete",
+        "partial",
+        "unavailable"
+      ]
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "finding_id": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+          },
+          "change_type": {
+            "enum": [
+              "new_requirement",
+              "amendment",
+              "consultation",
+              "final_decision",
+              "guidance",
+              "date_change",
+              "correction",
+              "withdrawal",
+              "unchanged",
+              "late_publication"
+            ]
+          },
+          "status": {
+            "enum": [
+              "proposal",
+              "consultation",
+              "adopted_legislation",
+              "published_legislation",
+              "supervisory_guidance",
+              "supervisory_decision",
+              "correction",
+              "withdrawal",
+              "other_verified"
+            ]
+          },
+          "event_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "official_change": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+          },
+          "substantive_difference": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+          },
+          "affected_entities": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+          },
+          "dates": {
+            "type": "object",
+            "properties": {
+              "decision": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "entry_into_force": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "application": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "transition": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "decision",
+              "entry_into_force",
+              "application",
+              "transition"
+            ],
+            "additionalProperties": false
+          },
+          "interpretation": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+          },
+          "operational_impact": {
+            "type": "string",
+            "pattern": "^[^\\x00-\\x1f\\x7f]*$"
+          },
+          "internal_applicability": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+          },
+          "review_actions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "source_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "legal_claims": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+                },
+                "source_ids": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+                  },
+                  "minItems": 1,
+                  "uniqueItems": true
+                }
+              },
+              "required": [
+                "text",
+                "source_ids"
+              ],
+              "additionalProperties": false
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "finding_id",
+          "title",
+          "change_type",
+          "status",
+          "event_date",
+          "observed_at",
+          "official_change",
+          "substantive_difference",
+          "affected_entities",
+          "dates",
+          "interpretation",
+          "operational_impact",
+          "internal_applicability",
+          "review_actions",
+          "source_ids",
+          "legal_claims"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+          },
+          "authority": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+          },
+          "publication_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "provision": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "primary": {
+            "type": "boolean"
+          },
+          "access": {
+            "enum": [
+              "read",
+              "unavailable"
+            ]
+          },
+          "verification": {
+            "enum": [
+              "verified",
+              "unverified",
+              "conflicting"
+            ]
+          },
+          "retrieved_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "limitations": {
+            "type": "string",
+            "pattern": "^[^\\x00-\\x1f\\x7f]*$"
+          }
+        },
+        "required": [
+          "source_id",
+          "title",
+          "authority",
+          "publication_date",
+          "provision",
+          "url",
+          "primary",
+          "access",
+          "verification",
+          "retrieved_at",
+          "limitations"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "source_checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+          },
+          "status": {
+            "enum": [
+              "read",
+              "unavailable"
+            ]
+          },
+          "limitations": {
+            "type": "string",
+            "pattern": "^[^\\x00-\\x1f\\x7f]*$"
+          }
+        },
+        "required": [
+          "source_id",
+          "status",
+          "limitations"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "schema_version",
+    "profile_id",
+    "run_id",
+    "report_date",
+    "timezone",
+    "language",
+    "labels",
+    "jurisdictions",
+    "domains",
+    "period",
+    "previous_report",
+    "coverage",
+    "summary",
+    "findings",
+    "sources",
+    "source_checks",
+    "limitations"
+  ],
+  "additionalProperties": false
+}

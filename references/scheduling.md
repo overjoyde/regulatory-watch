@@ -1,0 +1,15 @@
+# Scheduling is an environment-dependent integration
+
+This package contains no scheduler, cron installer or background runner. A stored frequency/time is not an active task. Development, example generation and tests must not create scheduled tasks or perform live reviews.
+
+For a user-requested schedule, discover available scheduling tools and their supported recurrence/time-zone model. Summarize profile, recurrence, local time, IANA zone, next occurrence, source/browsing/code access, cloud-accessible profile/history, output destination and delivery capability. A preview must say **proposed/inactive** until the actual creation/update succeeds. Require explicit user authorization to create or materially change a schedule; an earlier explicit request covering the concrete settings can supply that authorization. Do not repeat permission questions already answered.
+
+After authorization use the environment's scheduling action, not a pretend schedule written into Markdown. Verify returned task ID, enabled state, stored recurrence/time zone and next run if provided. Do not infer scheduling success from the profile. A manual profile cannot be activated until recurrence is supplied. For unsupported custom syntax ask for a supported equivalent, without inventing an accepted expression. Preserve the requested wall-clock local time across DST where supported; clarify the scheduler's nonexistent/ambiguous-local-time behavior. For day 29-31 apply the confirmed skip/last-day policy, or explain that the scheduler cannot represent it.
+
+Suggested task instruction, adapted to actual capabilities:
+
+> Use regulatory-watch with confirmed profile [cloud record or attached JSON], profile ID [ID], and authorized history/ledger [location]. Validate configuration; determine current time in [IANA zone]; read original sources; use the last complete checkpoint; report material changes or explicit source limitations; generate requested formats from one canonical model; render/inspect PDF pages if supported; save to [verified destination] and verify; advance checkpoint only after complete verified coverage and successful save. Return exact period, findings count, source coverage and output/storage status. Do not create other scheduled tasks or send to unapproved destinations.
+
+Keep prompts below the host scheduler's limit. Store references to configuration/history only when the future runtime can access them with authorized credentials. Never embed credentials or rely on a developer's local machine, local font paths, synchronized folders or undocumented conversation memory.
+
+If scheduling is unavailable, save/export the profile if possible and explain manual invocation (`Use regulatory-watch with this profile`). Offer generic external-scheduler integration advice only if requested; do not install or activate one implicitly. If cloud storage or a delivery connector is unavailable, explain the exact capability gap and offer export/inline output. Do not equate a skill installation with persistence, scheduling or delivery.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Regulatory Watch"
+  short_description: "Configurable, evidence-linked regulatory monitoring"
+  default_prompt: "Use $regulatory-watch to configure a monitoring profile or run a review using my confirmed profile."

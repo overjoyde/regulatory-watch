@@ -1,0 +1,494 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Regulatory Watch profile v1.0",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "enum": [
+        "1.0"
+      ]
+    },
+    "profile_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+    },
+    "profile_name": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+    },
+    "confirmed": {
+      "type": "boolean"
+    },
+    "jurisdictions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+          },
+          "kind": {
+            "enum": [
+              "national",
+              "subnational",
+              "supranational",
+              "international"
+            ]
+          },
+          "confirmed": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "name",
+          "kind",
+          "confirmed"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "domains": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "focus": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+          },
+          "authority": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "jurisdictions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "domains": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "relevance_status": {
+            "enum": [
+              "pending",
+              "verified"
+            ]
+          },
+          "verified_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "required": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "source_id",
+          "authority",
+          "url",
+          "jurisdictions",
+          "domains",
+          "relevance_status",
+          "verified_at",
+          "required"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "schedule": {
+      "type": "object",
+      "properties": {
+        "frequency": {
+          "enum": [
+            "manual",
+            "daily",
+            "weekly",
+            "monthly",
+            "custom"
+          ]
+        },
+        "timezone": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+        },
+        "time": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "weekdays": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "monday",
+              "tuesday",
+              "wednesday",
+              "thursday",
+              "friday",
+              "saturday",
+              "sunday"
+            ]
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "month_day": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 31
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "recurrence": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "short_month_policy": {
+          "enum": [
+            "skip",
+            "last_day"
+          ]
+        }
+      },
+      "required": [
+        "frequency",
+        "timezone",
+        "time",
+        "weekdays",
+        "month_day",
+        "recurrence",
+        "short_month_policy"
+      ],
+      "additionalProperties": false
+    },
+    "report": {
+      "type": "object",
+      "properties": {
+        "language": {
+          "type": "string",
+          "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$"
+        },
+        "max_words": {
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 20000
+        },
+        "max_changes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 50
+        },
+        "detail_level": {
+          "enum": [
+            "executive",
+            "standard",
+            "detailed"
+          ]
+        },
+        "formats": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "markdown",
+              "pdf"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "design": {
+          "enum": [
+            "default_light",
+            "minimal_gray",
+            "custom"
+          ]
+        },
+        "style": {
+          "type": "object",
+          "properties": {
+            "font_regular": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "font_bold": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "text_color": {
+              "type": "string",
+              "pattern": "^#[0-9A-Fa-f]{6}$"
+            },
+            "accent_color": {
+              "type": "string",
+              "pattern": "^#[0-9A-Fa-f]{6}$"
+            }
+          },
+          "required": [
+            "font_regular",
+            "font_bold",
+            "text_color",
+            "accent_color"
+          ],
+          "additionalProperties": false
+        },
+        "file_naming": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+        },
+        "include_operational_impact": {
+          "type": "boolean"
+        },
+        "include_legal_review_questions": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "language",
+        "max_words",
+        "max_changes",
+        "detail_level",
+        "formats",
+        "design",
+        "style",
+        "file_naming",
+        "include_operational_impact",
+        "include_legal_review_questions"
+      ],
+      "additionalProperties": false
+    },
+    "storage": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "enum": [
+            "export",
+            "cloud",
+            "local"
+          ]
+        },
+        "destination": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "delivery_destination": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "mode",
+        "destination",
+        "delivery_destination"
+      ],
+      "additionalProperties": false
+    },
+    "organization": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+        },
+        "activities": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "products": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "processes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "functions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "type",
+        "activities",
+        "products",
+        "processes",
+        "functions"
+      ],
+      "additionalProperties": false
+    },
+    "monitoring": {
+      "type": "object",
+      "properties": {
+        "first_run_lookback_days": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 366
+        },
+        "compare_previous_report": {
+          "type": "boolean"
+        },
+        "retrieval_overlap_hours": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 168
+        },
+        "primary_sources_only_for_legal_claims": {
+          "enum": [
+            true
+          ]
+        }
+      },
+      "required": [
+        "first_run_lookback_days",
+        "compare_previous_report",
+        "retrieval_overlap_hours",
+        "primary_sources_only_for_legal_claims"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schema_version",
+    "profile_id",
+    "profile_name",
+    "confirmed",
+    "jurisdictions",
+    "domains",
+    "focus",
+    "sources",
+    "schedule",
+    "report",
+    "storage",
+    "organization",
+    "monitoring"
+  ],
+  "additionalProperties": false
+}

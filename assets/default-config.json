@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "new-profile",
+  "profile_name": "New monitoring profile",
+  "confirmed": false,
+  "jurisdictions": [
+    {
+      "name": "Select jurisdiction during onboarding",
+      "kind": "national",
+      "confirmed": false
+    }
+  ],
+  "domains": [
+    "Select regulatory domains during onboarding"
+  ],
+  "focus": [],
+  "sources": [],
+  "schedule": {
+    "frequency": "manual",
+    "timezone": "Etc/UTC",
+    "time": null,
+    "weekdays": [],
+    "month_day": null,
+    "recurrence": null,
+    "short_month_policy": "skip"
+  },
+  "report": {
+    "language": "en",
+    "max_words": 600,
+    "max_changes": 3,
+    "detail_level": "standard",
+    "formats": [
+      "markdown",
+      "pdf"
+    ],
+    "design": "default_light",
+    "style": {
+      "font_regular": null,
+      "font_bold": null,
+      "text_color": "#20252B",
+      "accent_color": "#345A70"
+    },
+    "file_naming": "Regulatory_Watch_{profile}_{date}_{run_id}",
+    "include_operational_impact": true,
+    "include_legal_review_questions": true
+  },
+  "storage": {
+    "mode": "export",
+    "destination": null,
+    "delivery_destination": null
+  },
+  "organization": {
+    "type": "general",
+    "activities": [],
+    "products": [],
+    "processes": [],
+    "functions": []
+  },
+  "monitoring": {
+    "first_run_lookback_days": 7,
+    "compare_previous_report": true,
+    "retrieval_overlap_hours": 48,
+    "primary_sources_only_for_legal_claims": true
+  }
+}

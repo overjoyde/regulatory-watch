@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "synthetic-demo",
+  "run_id": "demo-no-change",
+  "report_date": "2026-10-08",
+  "timezone": "Etc/UTC",
+  "language": "en",
+  "labels": {},
+  "jurisdictions": [
+    "Example Republic"
+  ],
+  "domains": [
+    "Consumer protection"
+  ],
+  "period": {
+    "start": "2026-10-01T09:00:00+00:00",
+    "end": "2026-10-08T09:00:00+00:00"
+  },
+  "previous_report": null,
+  "coverage": "complete",
+  "summary": "SYNTHETIC EXAMPLE: no material change found in simulated checks.",
+  "findings": [],
+  "sources": [],
+  "source_checks": [
+    {
+      "source_id": "example-authority",
+      "status": "read",
+      "limitations": "Synthetic simulated check"
+    }
+  ],
+  "limitations": [
+    "SYNTHETIC DEMO: all findings and verification states are simulated; links are not regulatory evidence."
+  ]
+}

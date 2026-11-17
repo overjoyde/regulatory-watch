@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "synthetic-demo",
+  "run_id": "demo-incomplete",
+  "report_date": "2026-10-08",
+  "timezone": "Etc/UTC",
+  "language": "en",
+  "labels": {},
+  "jurisdictions": [
+    "Example Republic"
+  ],
+  "domains": [
+    "Consumer protection"
+  ],
+  "period": {
+    "start": "2026-10-01T09:00:00+00:00",
+    "end": "2026-10-08T09:00:00+00:00"
+  },
+  "previous_report": null,
+  "coverage": "unavailable",
+  "summary": "SYNTHETIC EXAMPLE: source access failed; no conclusion about changes is possible.",
+  "findings": [],
+  "sources": [],
+  "source_checks": [
+    {
+      "source_id": "example-authority",
+      "status": "unavailable",
+      "limitations": "Simulated outage"
+    }
+  ],
+  "limitations": [
+    "SYNTHETIC DEMO: all findings and verification states are simulated; links are not regulatory evidence.",
+    "The configured source could not be accessed."
+  ]
+}

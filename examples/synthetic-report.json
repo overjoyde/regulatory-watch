@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "synthetic-demo",
+  "run_id": "demo-01",
+  "report_date": "2026-10-08",
+  "timezone": "Etc/UTC",
+  "language": "en",
+  "labels": {},
+  "jurisdictions": [
+    "Example Republic"
+  ],
+  "domains": [
+    "Consumer protection"
+  ],
+  "period": {
+    "start": "2026-10-01T09:00:00+00:00",
+    "end": "2026-10-08T09:00:00+00:00"
+  },
+  "previous_report": null,
+  "coverage": "complete",
+  "summary": "SYNTHETIC EXAMPLE. A fictional consultation seeks feedback on complaint handling. No enacted obligation is asserted.",
+  "findings": [
+    {
+      "finding_id": "example-consultation-01",
+      "title": "Fictional complaint-handling consultation",
+      "change_type": "consultation",
+      "status": "consultation",
+      "event_date": "2026-10-05",
+      "observed_at": "2026-10-08T08:30:00+00:00",
+      "official_change": "The fictional authority published a draft complaint-handling proposal.",
+      "substantive_difference": "A new consultation was published; existing obligations are unchanged.",
+      "affected_entities": "Example-sector providers described in the fictional draft.",
+      "dates": {
+        "decision": null,
+        "entry_into_force": null,
+        "application": null,
+        "transition": null
+      },
+      "interpretation": "Possible future changes may affect complaint intake.",
+      "operational_impact": "Review current intake fields if the proposal progresses.",
+      "internal_applicability": "Legal should check whether the draft sector definition covers the business.",
+      "review_actions": [
+        "Would the proposed entity definition cover the configured activities?"
+      ],
+      "source_ids": [
+        "example-draft"
+      ],
+      "legal_claims": [
+        {
+          "text": "The fictional document is a consultation, not enacted legislation.",
+          "source_ids": [
+            "example-draft"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "example-draft",
+      "title": "SYNTHETIC Draft Complaint Code",
+      "authority": "Fictional Consumer Authority",
+      "publication_date": "2026-10-05",
+      "provision": "Draft section 2",
+      "url": "https://example.org/draft-complaints",
+      "primary": true,
+      "access": "read",
+      "verification": "verified",
+      "retrieved_at": "2026-10-08T08:30:00+00:00",
+      "limitations": "Synthetic fixture only; no real source retrieval or legal verification performed"
+    }
+  ],
+  "source_checks": [
+    {
+      "source_id": "example-authority",
+      "status": "read",
+      "limitations": "Synthetic simulated check"
+    }
+  ],
+  "limitations": [
+    "SYNTHETIC DEMO: all findings and verification states are simulated; links are not regulatory evidence."
+  ]
+}

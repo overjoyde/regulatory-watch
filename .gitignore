@@ -1,0 +1,21 @@
+# Local Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Generated reports and user-specific state
+demo-output/
+reports/
+profiles/
+history/
+ledger/
+Regulatory_Watch_*
+
+# Secrets and local machine files
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
